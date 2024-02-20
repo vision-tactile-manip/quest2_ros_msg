@@ -1,0 +1,12 @@
+bool rh_one_a
+bool rh_two_b
+float32 rh_asx
+float32 rh_asy
+float32 rh_st
+float32 rh_lt
+bool lh_three_x
+bool lh_four_y
+float32 lh_asx
+float32 lh_asy
+float32 lh_st
+float32 lh_lt

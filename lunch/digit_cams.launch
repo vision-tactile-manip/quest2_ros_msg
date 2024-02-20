@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+
+
+  <!-- start camera stream -->
+  <!--include file="$(find video_stream_opencv)/launch/camera.launch">
+    <arg name="video_stream_provider" value="0"/>
+    <arg name="width" value="1920"/>
+    <arg name="height" value="1080"/>
+    <arg name="camera_info_url" value="fake"/>
+  </include--> 
+  <node name="digit_cam1" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video2" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="digit_cam1" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  <node name="image_view1" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/digit_cam1/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+  <node name="digit_cam2" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video4" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="digit_cam2" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  <node name="image_view2" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/digit_cam2/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+
+
+  <!-- rviz -->
+  <!--node  pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find soft_grip)/config/digit_cams.rviz"/-->
+
+</launch>
